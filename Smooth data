@@ -1,0 +1,18 @@
+clc
+clear all;
+
+A=textread('xxx.txt'); %读取文件
+
+[m,n]=size(A);         %确定矩阵A的行列数
+
+for  i=1:n             %因为数据是按列排列的，所以选择按列循环
+     if i<n+1
+         B(:,i)=smooth(A(:,i),9,'moving');
+     end
+end
+
+% for  i=1:m             %若数据是按行排列的，按行循环
+%      if i<n+1
+%          B(:,i)=smooth(A(:,i),9,'moving');
+%      end
+% end
