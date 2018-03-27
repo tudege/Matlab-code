@@ -10,8 +10,8 @@ Z=textread('xxx.txt');      %读取256*256的AFM高度信息
 m=min(min(Z));
 H=Z-m;           %高度归零
 
-pcolor(X,Y,H);   %画图
-%surf(X,Y,H);
+pcolor(X,Y,H);   %二维图
+%surf(X,Y,H);     %三维图
 
 shading interp;  %在网格片内采用颜色插值处理
 colormap(jet);   %色图，其他可用copper
