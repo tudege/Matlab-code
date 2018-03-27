@@ -10,4 +10,10 @@ Z=[xxx];      %直接输入256*256的AFM高度信息
 m=min(min(Z));
 H=Z-m;        %高度归零
 
-surf(X,Y,H);  %画图
+pcolor(X,Y,H);%画图
+%surf(X,Y,H);
+
+shading interp;  %在网格片内采用颜色插值处理
+colormap(jet);   %色图，其他可用copper
+colorbar;
+xlabel('横向/μm');ylabel('纵向/μm');
