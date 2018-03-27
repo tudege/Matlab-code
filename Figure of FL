@@ -12,8 +12,8 @@ Z=textread('xxx.txt');      %读取荧光图像信息
      ZZ(:,i)=Z(:,i*2-1);    %矩阵ZZ是得到的高度信息(or强度信息)
  end                        
 
-min=min(min(Z));
-H=Z-min;                    %高度归零
+min=min(min(ZZ));
+H=ZZ-min;                   %高度归零
 [n,m]=size(H);              %矩阵H为[n,m]的矩阵
 
 % for i=1:2                 %由于图中某些区域并不是需要画出来的    
