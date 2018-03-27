@@ -12,7 +12,7 @@ for  i=1:n             %因为数据是按列排列的，所以选择按列循�
 end
 
 % for  i=1:m             %若数据是按行排列的，按行循环
-%      if i<n+1
-%          B(:,i)=smooth(A(:,i),9,'moving');
+%      if i<m+1
+%          B(i,：)=smooth(A(i,:),5,'moving');
 %      end
 % end
