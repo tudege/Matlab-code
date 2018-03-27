@@ -7,7 +7,7 @@ A=textread('xxx.txt'); %读取文件
 
 for  i=1:n             %因为数据是按列排列的，所以选择按列循环
      if i<n+1
-         B(:,i)=smooth(A(:,i),9,'moving');
+         B(:,i)=smooth(A(:,i),5,'moving');
      end
 end
 
