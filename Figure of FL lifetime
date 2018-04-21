@@ -1,0 +1,47 @@
+clear all
+clc
+%工作区中：y为峰值处随时间变化的值，TT为其对应的时间
+
+Z=textread('Mon.asc');      %读取荧光寿命信息
+[n1,m1]=size(Z);            %读取数据行列数，1024*82
+
+TT=[0:0.5:39.5]';            %老师提供，每0.5ns读取一次数据，为1*80的数据
+for i=1:n1                  %画图需要行列数一样的数据，故将1*80的TT，写为1024*80的T
+    T(i,:)=TT;
+end
+
+XX=Z(:,1);                  %信息中第1列是波长信息，取为XX
+for i=1:m1-2                %画图需要行列数一样的数据，故将1024*1的XX，写为1024*80的X
+    X(:,i)=XX;
+end
+
+Y=Z(:,2:m1-1);              %信息中第2-81列是强度值，为1024*80的数据
+
+m=min(min(Y));              
+
+for i=1:n1
+    if X(i,:)<420
+        Y(i,:)=m;
+    end
+%     for j=1:m1-2
+%         Y(i,j)=smooth(Y(i,j),5,'moving'); %平滑数据
+%     end
+end
+% 
+% [maxr,index]=max(Y);                 %得到Y最大值与其对应的X值的行数
+% [maxrr,indexr]=max(maxr);            %通过Y值最大值得到时间零点，即indexr
+% [maxrx,indexx]=max(Y(:,indexr));     %在时间零点处的光谱，同时得到光谱中最大值的波长对应的X值，即indexx
+% y=Y(indexx,:)';                       %随时间变化的indexx处的强度值
+
+y=Y(358,:)';                       %随时间变化的indexx处的强度值
+
+plot(TT,y);                          %TT是一维时间数据
+xlabel('时间(ns)');ylabel('强度(a.u.)');
+
+
+
+% surf(X,T,Y);  
+% shading interp;  %在网格片内采用颜色插值处理
+% colormap(jet);   %色图，其他可用copper
+% colorbar;
+% xlabel('波长(nm)');ylabel('时间(ms)');zlabel('强度(a.u.)');
